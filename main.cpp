@@ -12,10 +12,11 @@ using namespace std;
 using namespace chrono;
 
 void BubbleSort(vector<int> array);
+void SelectionSort(vector<int> array);
 
 int main() {
 
-
+    srand(time(0));
     std::vector<int> example(200);
 
     std::generate(example.begin(), example.end(), RandomInt);
@@ -23,11 +24,12 @@ int main() {
 
     printVector(example);
     auto start = high_resolution_clock::now(); 
-    BubbleSort(example);
+    //BubbleSort(example);
+    SelectionSort(example);
     auto stop = high_resolution_clock::now(); 
     auto duration = duration_cast<microseconds>(stop - start); 
 
-    cout << "Bubble sort took "  << duration.count() << " microseconds" << endl; 
+    cout << "The sort took "  << duration.count() << " microseconds" << endl; 
 
 }
 
@@ -50,6 +52,26 @@ void BubbleSort(vector<int> toBeSorted){
     while(swapped);
     cout << " After sorting we are left with " << endl;
     printVector(toBeSorted);
+}
+
+void SelectionSort(vector<int> toBeSorted){
+    int min,j;
+
+    for( int i = 0; i < toBeSorted.size(); i++){
+        min = i;
+        for(j = i + 1; j < toBeSorted.size(); j++){
+            if(toBeSorted[j] < toBeSorted[min]){
+                min = j;
+            }
+        }
+        if(min != i){
+            swapElements(toBeSorted[i],toBeSorted[min]);
+        }
+    }
+    cout << " After selection sorting we are left with " << endl;
+    printVector(toBeSorted);
+
+
 }
 
 
