@@ -13,6 +13,7 @@ using namespace chrono;
 
 void BubbleSort(vector<int> array);
 void SelectionSort(vector<int> array);
+void InsertionSort(vector<int> array);
 
 int main() {
 
@@ -25,7 +26,8 @@ int main() {
     printVector(example);
     auto start = high_resolution_clock::now(); 
     //BubbleSort(example);
-    SelectionSort(example);
+    //SelectionSort(example);
+    InsertionSort(example);
     auto stop = high_resolution_clock::now(); 
     auto duration = duration_cast<microseconds>(stop - start); 
 
@@ -70,7 +72,23 @@ void SelectionSort(vector<int> toBeSorted){
     }
     cout << " After selection sorting we are left with " << endl;
     printVector(toBeSorted);
+}
 
+void InsertionSort(vector<int> toBeSorted){
+    int j;
+
+    for (int i = 1; i < toBeSorted.size(); i++){
+        j = i;
+       while(j > 0){
+           if(toBeSorted[j-1] > toBeSorted[j]){
+               swapElements(toBeSorted[j-1], toBeSorted[j]);
+           }
+           j--;
+       }
+
+    }
+    cout << " After insertion sorting we are left with " << endl;
+    printVector(toBeSorted);
 
 }
 
